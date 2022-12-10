@@ -7,7 +7,7 @@ const dataDays = document.querySelector('[data-days]');
 const dataHours = document.querySelector('[data-hours]');
 const dataMinutes = document.querySelector('[data-minutes]');
 const dataSeconds = document.querySelector('[data-seconds]');
-let chosenTime = null
+let chosenTime = null;
 
 const options = {
   enableTime: true,
@@ -18,7 +18,7 @@ const options = {
   // Метод onClose() з об'єкта параметрів викликається щоразу під час закриття елемента інтерфейсу, який створює flatpickr.
   // Саме у ньому варто обробляти дату, обрану користувачем. Параметр selectedDates - це масив обраних дат, тому ми беремо перший елемент.
   onClose(selectedDates) {
-    chosenTime = selectedDates[0]
+    chosenTime = selectedDates[0];
     if (chosenTime.getTime() < Date.now()) {
       window.alert('Please choose a date in the future');
     }
@@ -40,7 +40,6 @@ flatpickr('#datetime-picker', options);
 startBtn.addEventListener('click', startTimer);
 
 function startTimer() {
-
   getDeltaTime();
 }
 
@@ -48,12 +47,12 @@ function getDeltaTime() {
   timerId = setInterval(() => {
     const deltaTime = chosenTime.getTime() - Date.now();
     const deltaTimeMs = convertMs(deltaTime);
-      if (deltaTime <= 0) {
-           clearInterval(timerId);
-      } else {
-        updateClockView(deltaTimeMs);
-      }
-      }, 1000);
+    if (deltaTime <= 0) {
+      clearInterval(timerId);
+    } else {
+      updateClockView(deltaTimeMs);
+    }
+  }, 1000);
 }
 
 function convertMs(ms) {
@@ -65,12 +64,14 @@ function convertMs(ms) {
   const days = addLeadingZero(Math.floor(ms / day));
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
   const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
-  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
+  const seconds = addLeadingZero(
+    Math.floor((((ms % day) % hour) % minute) / second)
+  );
   return { days, hours, minutes, seconds };
 }
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, "0");
+  return String(value).padStart(2, '0');
 }
 
 function updateClockView({ days, hours, minutes, seconds }) {
