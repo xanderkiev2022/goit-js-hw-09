@@ -78,5 +78,10 @@ console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 console.log(convertMs()); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
+function updateClockface({ days, hours, mins, secs }) {
+  dataDays.textContent = days;
+  dataHours.textContent = hours;
+}
+// {  }
 // Форматування часу
 // Функція convertMs() повертає об'єкт з розрахованим часом, що залишився до кінцевої дати. Зверни увагу, що вона не форматує результат. Тобто, якщо залишилося 4 хвилини або будь-якої іншої складової часу, то функція поверне 4, а не 04. В інтерфейсі таймера необхідно додавати 0, якщо в числі менше двох символів. Напиши функцію addLeadingZero(value), яка використовує метод padStart() і перед рендерингом інтефрейсу форматує значення.
