@@ -34,7 +34,7 @@ function onStart(event) {
       });
     delayValue += stepValue;
   }
-  // form.reset();
+  formEl.reset();
 }
 
 function createPromise(position, delay) {
